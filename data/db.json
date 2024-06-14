@@ -47,6 +47,17 @@
       ],
       "method": "볶는다",
       "cookingTime": "5분"
+    },
+    {
+      "id": "7286",
+      "title": "떡라면",
+      "ingredients": [
+        "신라면",
+        "떡국 떡",
+        "계란"
+      ],
+      "method": "끓인다",
+      "cookingTime": "5분"
     }
   ]
 }

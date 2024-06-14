@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
 import "./Create.css";
 import { useFetch } from "../../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
   //새 레시티 작성시 제목, 요리방법, 요리시간 입력 받아야함
@@ -11,8 +12,13 @@ const Create = () => {
   const [newIngredient, setNewIngredient] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const ingredientInput = useRef(); //리액트에서 선택 방법
-  //postData 메서드로 서버로 보낼 데이터를 입력하면 요청된다
-  const { postData } = useFetch("http://localhost:3030/recipes/", "POST");
+  //postData 값이 들어가면 url주소로 요청이되고 서버에 저장된다
+  const { postData, data } = useFetch("http://localhost:3030/recipes/", "POST");
+  const navigate = useNavigate(); //라우트 이동 객체
+  //서버에 post 요청 후 data가 리턴되면 저장 완료 ->홈으로 redirect
+  useEffect(() => {
+    if (data) navigate("/");
+  }, [data, navigate]);
 
   const handlesubmit = (e) => {
     e.preventDefault(); //기존 이벤트 중지시킨다
