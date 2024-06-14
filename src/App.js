@@ -7,13 +7,18 @@ import Recipe from "./pages/recipe/Recipe";
 
 import "./App.css";
 import Navbar from "./components/Navbar";
+import ThemeSelector from "./components/ThemeSelector";
+import { useContext } from "react";
+import { ThemeContext } from "./context/ThemeContext";
 
 function App() {
+  const { mode } = useContext(ThemeContext);
   //리액트 라우트는 사용시 최상단에 BrowserRouter > Routes > Route 순으로 가야한다
   return (
-    <div className="App">
+    <div className={`App ${mode}`}>
       <BrowserRouter>
         <Navbar />
+        <ThemeSelector />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />
