@@ -3,8 +3,11 @@ import { useRef } from "react";
 import "./Create.css";
 import { useFetch } from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const Create = () => {
+  const { mode } = useContext(ThemeContext);
   //새 레시티 작성시 제목, 요리방법, 요리시간 입력 받아야함
   const [title, setTitle] = useState("");
   const [method, setMethod] = useState("");
@@ -36,7 +39,7 @@ const Create = () => {
   };
 
   return (
-    <div className="create">
+    <div className={`create ${mode}`}>
       <h2 className="page-title">새 레시피를 추가하세요</h2>
       <form onSubmit={handlesubmit}>
         <label>
